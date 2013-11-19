@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="squirrelApp">
+    <head>
+        <meta charset="utf-8">
+        <title>Squirrel</title>
+    </head>
+    <body ng-cloak>
+        <div class="container" ng-controller="squirrelCtrl">
+            <button class="btn btn-default squirrel-btn" ng-click="fetchData()">Fetch data</button>
+            <div class="squirrel-card panel panel-default">
+                <div ng-show="data" class="hoardContainer">
+                    <p class="data">{{data}}</p>
+                </div>
+                <div ng-hide="data">
+                    <p>No data</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

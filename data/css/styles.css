@@ -1,0 +1,6 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {display: none;}
+.container {margin-top: 50px;}
+.squirrel-btn {margin-bottom: 30px}
+.hoardContainer {width: 960px;}
+.squirrel-card {padding: 20px;}
+.data {font-family: "Open Sans", Helvetica, Arial; font-weight: 200; font-size: 24pt;}
