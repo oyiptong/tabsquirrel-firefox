@@ -7,7 +7,7 @@ squirrelApp.filter('escape', function() {
 });
 
 squirrelApp.controller("squirrelCtrl", function($scope) {
-  $scope.data = null;
+  $scope.tabs = null;
 
   $scope.fetchData =  function fetchData() {
     self.port.emit("fetch_data");
@@ -15,7 +15,7 @@ squirrelApp.controller("squirrelCtrl", function($scope) {
 
   self.port.on("data", function(data) {
     $scope.$apply(_ => {
-      $scope.data = data;
+      $scope.tabs = data;
     });
   });
 });

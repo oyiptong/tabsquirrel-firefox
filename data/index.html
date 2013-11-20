@@ -6,13 +6,15 @@
     </head>
     <body ng-cloak>
         <div class="container" ng-controller="squirrelCtrl">
-            <button class="btn btn-default squirrel-btn" ng-click="fetchData()">Fetch data</button>
+            <button class="btn btn-default squirrel-btn" ng-click="fetchData()">Refresh</button>
             <div class="squirrel-card panel panel-default">
-                <div ng-show="data" class="hoardContainer">
-                    <p class="data">{{data}}</p>
+                <div ng-show="tabs" class="hoardContainer">
+                    <p class="data" ng-repeat="tab in tabs">
+                        <a href="{{tab.url}}">{{tab.title}}</a>
+                    </p>
                 </div>
-                <div ng-hide="data">
-                    <p>No data</p>
+                <div ng-hide="tabs">
+                    <p>No tabs</p>
                 </div>
             </div>
         </div>
