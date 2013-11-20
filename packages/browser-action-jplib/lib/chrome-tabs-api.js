@@ -20,7 +20,7 @@ function sdkTabToChrome(sdkTab) {
         pinned: sdkTab.isPinned,
         url: sdkTab.url,
         title: sdkTab.title,
-        faviconUrl: sdkTab.favicon,
+        faviconUrl: null,
 //        status: 
         incognito: isPrivate(sdkTab)
     };
