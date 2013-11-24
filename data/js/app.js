@@ -10,7 +10,11 @@ squirrelApp.controller("squirrelCtrl", function($scope) {
   $scope.tabs = null;
 
   $scope.fetchData =  function fetchData() {
-    self.port.emit("fetch_data");
+    self.port.emit("fetch_tabs");
+  }
+
+  $scope.deleteAll = function deleteAll() {
+    self.port.emit("delete_all");
   }
 
   self.port.on("data", function(data) {
@@ -19,7 +23,7 @@ squirrelApp.controller("squirrelCtrl", function($scope) {
     });
   });
 });
-angular.bootstrap(document, ['squirrelApp']);
+//angular.bootstrap(document, ['squirrelApp']);
 
 // Low-level data injection
 self.port.on("style", function(file) {

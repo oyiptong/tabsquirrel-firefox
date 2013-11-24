@@ -6,7 +6,10 @@
     </head>
     <body ng-cloak>
         <div class="container" ng-controller="squirrelCtrl">
-            <button class="btn btn-default squirrel-btn" ng-click="fetchData()">Refresh</button>
+            <div class="btn-group">
+                <button class="btn btn-default squirrel-btn" ng-click="fetchData()">Refresh</button>
+                <button class="btn btn-default squirrel-btn" ng-click="deleteAll()">Clear All</button>
+            </div>
             <div class="squirrel-card panel panel-default">
                 <div ng-show="tabs" class="hoardContainer">
                     <p class="data" ng-repeat="tab in tabs">
