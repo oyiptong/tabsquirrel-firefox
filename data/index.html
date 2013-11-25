@@ -5,15 +5,18 @@
         <title>Squirrel</title>
     </head>
     <body ng-cloak>
-        <div class="container" ng-controller="squirrelCtrl">
+        <div class="page" ng-controller="squirrelCtrl">
             <div class="btn-group">
                 <button class="btn btn-default squirrel-btn" ng-click="fetchData()">Refresh</button>
                 <button class="btn btn-default squirrel-btn" ng-click="deleteAll()">Clear All</button>
             </div>
-            <div class="squirrel-card panel panel-default">
-                <div ng-show="tabs" class="hoardContainer">
+            <div class="windowContainer">
+                <div ng-show="tabs" class="tabContainer">
                     <p class="data" ng-repeat="tab in tabs">
+                        <img src="{{tab.favicon}}"/>
                         <a href="{{tab.url}}">{{tab.title}}</a>
+                        <br/>
+                        <small>{{tab.url}}</small>
                     </p>
                 </div>
                 <div ng-hide="tabs">
