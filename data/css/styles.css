@@ -4,3 +4,6 @@
 .windowContainer {font-family: "Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;}
 .windowContainer {}
 .tabContainer {}
+.tab-link {
+    cursor: pointer;
+}

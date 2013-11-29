@@ -14,7 +14,7 @@
                 <div ng-show="tabs" class="tabContainer">
                     <p class="data" ng-repeat="tab in tabs">
                         <img src="{{tab.favicon}}"/>
-                        <a href="{{tab.url}}">{{tab.title}}</a>
+                        <a class="tab-link" ng-click="openTab(tab.url)">{{tab.title}}</a>
                         <br/>
                         <small>{{tab.url}}</small>
                     </p>

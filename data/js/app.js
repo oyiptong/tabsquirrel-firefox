@@ -2,14 +2,20 @@
 
 let squirrelApp = angular.module("squirrelApp", []);
 
-squirrelApp.filter('escape', function() {
+squirrelApp.filter('escape', function () {
   return window.escape;
 });
 
-squirrelApp.controller("squirrelCtrl", function($scope) {
+squirrelApp.controller("squirrelCtrl", function ($scope) {
   $scope.tabs = null;
 
-  $scope.fetchData =  function fetchData() {
+  $scope.openTab = function openTab(url) {
+    self.port.emit("open_tab", {
+      url: url
+    });
+  }
+
+  $scope.fetchData = function fetchData() {
     self.port.emit("fetch_tabs");
   }
 
@@ -17,7 +23,7 @@ squirrelApp.controller("squirrelCtrl", function($scope) {
     self.port.emit("delete_all");
   }
 
-  self.port.on("data", function(data) {
+  self.port.on("data", function (data) {
     $scope.$apply(_ => {
       $scope.tabs = data;
     });
@@ -26,7 +32,7 @@ squirrelApp.controller("squirrelCtrl", function($scope) {
 //angular.bootstrap(document, ['squirrelApp']);
 
 // Low-level data injection
-self.port.on("style", function(file) {
+self.port.on("style", function (file) {
   let link = document.createElement("link");
   link.setAttribute("href", file);
   link.setAttribute("rel", "stylesheet");
