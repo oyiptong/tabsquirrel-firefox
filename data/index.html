@@ -13,7 +13,7 @@
             <div class="windowContainer">
                 <div ng-show="tabs" class="tabContainer">
                     <p class="data" ng-repeat="tab in tabs">
-                        <img src="{{tab.favicon}}"/>
+                        <img class="favicon" ng-show="tab.favicon" src="{{tab.favicon}}"/>
                         <button class="btn-link" ng-click="openTab(tab.url)">{{tab.title}}</button>
                         <br/>
                         <small>{{tab.url}}</small>
