@@ -5,3 +5,7 @@
 .windowContainer {}
 .tabContainer {}
 .favicon {height: 16px; width: 16px;}
+.tab-action {width: 300px;}
+.tab-url {padding: 0px 10px;}
+.tab-btn:hover {text-decoration: none;}
+.tab-actions-hidden {display: none;}

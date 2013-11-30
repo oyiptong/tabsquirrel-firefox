@@ -9,8 +9,18 @@ squirrelApp.filter('escape', function () {
 squirrelApp.controller("squirrelCtrl", function ($scope) {
   $scope.tabs = null;
 
+  /** Messaging **/
+
   $scope.openTab = function openTab(url) {
     self.port.emit("open_tab", {
+      url: url
+    });
+  }
+
+  $scope.deleteTab = function deleteTab(index, url) {
+    var elem = angular.element(document.querySelector("#tab-details-"+index));
+    elem.remove();
+    self.port.emit("delete_tab", {
       url: url
     });
   }
@@ -28,8 +38,19 @@ squirrelApp.controller("squirrelCtrl", function ($scope) {
       $scope.tabs = data;
     });
   });
+
+  /** UI **/
+
+  $scope.showTabActions = function showTabAction(index) {
+    var elem = angular.element(document.querySelector("#tab-action-"+index));
+    elem.removeClass("tab-actions-hidden");
+  }
+
+  $scope.hideTabActions = function hideTabAction(index) {
+    var elem = angular.element(document.querySelector("#tab-action-"+index));
+    elem.addClass("tab-actions-hidden");
+  }
 });
-//angular.bootstrap(document, ['squirrelApp']);
 
 // Low-level data injection
 self.port.on("style", function (file) {

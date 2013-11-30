@@ -12,12 +12,16 @@
             </div>
             <div class="windowContainer">
                 <div ng-show="tabs" class="tabContainer">
-                    <p class="data" ng-repeat="tab in tabs">
-                        <img class="favicon" ng-show="tab.favicon" src="{{tab.favicon}}"/>
-                        <button class="btn-link" ng-click="openTab(tab.url)">{{tab.title}}</button>
-                        <br/>
-                        <small>{{tab.url}}</small>
-                    </p>
+                    <div id="tab-details-{{tab.index}}" class="tab-details" ng-repeat="tab in tabs" ng-mouseenter="showTabActions(tab.index)" ng-mouseleave="hideTabActions(tab.index)">
+                        <button type="button" class="btn btn-link tab-btn" ng-click="openTab(tab.url)">
+                            <img class="favicon" ng-show="tab.favicon" src="{{tab.favicon}}"/>
+                            {{tab.title}}
+                        </button>
+                        <span id="tab-action-{{tab.index}}" class="tab-actions-hidden">
+                            <button type="button" class="btn btn-xs btn-danger tab-btn" ng-click="deleteTab(tab.index, tab.url)">remove</button>
+                        </span>
+                        <p class="tab-url"><small>{{tab.url}}</small></p>
+                    </div>
                 </div>
                 <div ng-hide="tabs">
                     <p>No tabs</p>
