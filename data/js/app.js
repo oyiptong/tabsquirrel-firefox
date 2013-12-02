@@ -18,8 +18,6 @@ squirrelApp.controller("squirrelCtrl", function ($scope) {
   }
 
   $scope.deleteTab = function deleteTab(index, url) {
-    var elem = angular.element(document.querySelector("#tab-details-"+index));
-    elem.remove();
     self.port.emit("delete_tab", {
       url: url
     });
