@@ -17,8 +17,9 @@ squirrelApp.controller("squirrelCtrl", function ($scope) {
     });
   }
 
-  $scope.deleteTab = function deleteTab(index, url) {
+  $scope.deleteTab = function deleteTab(id, url) {
     self.port.emit("delete_tab", {
+      id: id,
       url: url
     });
   }
@@ -39,13 +40,13 @@ squirrelApp.controller("squirrelCtrl", function ($scope) {
 
   /** UI **/
 
-  $scope.showTabActions = function showTabAction(index) {
-    var elem = angular.element(document.querySelector("#tab-action-"+index));
+  $scope.showTabActions = function showTabAction(id) {
+    var elem = angular.element(document.querySelector("#tab-action-"+id));
     elem.removeClass("tab-actions-hidden");
   }
 
-  $scope.hideTabActions = function hideTabAction(index) {
-    var elem = angular.element(document.querySelector("#tab-action-"+index));
+  $scope.hideTabActions = function hideTabAction(id) {
+    var elem = angular.element(document.querySelector("#tab-action-"+id));
     elem.addClass("tab-actions-hidden");
   }
 });
