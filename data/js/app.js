@@ -11,21 +11,46 @@ squirrelApp.controller("squirrelCtrl", function ($scope) {
 
   /** Messaging **/
 
-  $scope.openTab = function openTab(url) {
-    self.port.emit("open_tab", {
-      url: url
+  $scope.restoreTab = function restoreTab(id) {
+    self.port.emit("restore_tab", {
+      id: id,
+      url: url,
     });
   }
 
-  $scope.deleteTab = function deleteTab(id, url) {
+  $scope.deleteTab = function deleteTab(id) {
     self.port.emit("delete_tab", {
       id: id,
-      url: url
     });
   }
 
-  $scope.fetchData = function fetchData() {
-    self.port.emit("fetch_tabs");
+  $scope.deleteGroup = function deleteGroup(groupID) {
+    var tabs = $scope.tabs[groupID];
+    var tabIDs = [];
+    for (var i=0; i < tabs.length; i++) {
+      tabIDs.push(tabs[i].id);
+    }
+    self.port.emit("delete_group", {
+      id: groupID,
+      tabIDs: tabIDs,
+      grouping: $scope.grouping,
+    });
+  }
+
+  $scope.restoreGroup = function restoreGroup(groupID) {
+    var tabs = $scope.tabs[groupID];
+    var tabIDs = [];
+    var tabURLs = [];
+    for (var i=0; i < tabs.length; i++) {
+      tabIDs.push(tabs[i].id);
+      tabURLs.push(tabs[i].url);
+    }
+    self.port.emit("restore_group", {
+      id: groupID,
+      tabIDs: tabIDs,
+      tabURLs: tabURLs,
+      grouping: $scope.grouping,
+    });
   }
 
   $scope.deleteAll = function deleteAll() {
@@ -33,8 +58,13 @@ squirrelApp.controller("squirrelCtrl", function ($scope) {
   }
 
   self.port.on("data", function (data) {
-    $scope.$apply(_ => {
-      $scope.tabs = data;
+    $scope.$apply(function() {
+      for (let i=0; i < data.groups.length; i++) {
+        data.groups[i].date = new Date(data.groups[i].timestamp);
+      }
+      $scope.grouping = data.type;
+      $scope.groups = data.groups;
+      $scope.tabs = data.tabs;
     });
   });
 

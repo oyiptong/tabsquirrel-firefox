@@ -9,3 +9,6 @@
 .tab-url {padding: 0px 10px;}
 .tab-btn:hover {text-decoration: none;}
 .tab-actions-hidden {display: none;}
+.btn-small {font-size: 75%;}
+.group-details {margin-bottom: 35px;}
+.tab-details {height:25px; line-height: 25px;}

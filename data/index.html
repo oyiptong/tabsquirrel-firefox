@@ -7,20 +7,27 @@
     <body ng-cloak>
         <div class="page" ng-controller="squirrelCtrl">
             <div class="btn-group">
-                <button class="btn btn-default squirrel-btn" ng-click="fetchData()">Refresh</button>
                 <button class="btn btn-default squirrel-btn" ng-click="deleteAll()">Clear All</button>
             </div>
             <div class="windowContainer">
                 <div ng-show="tabs" class="tabContainer">
-                    <div id="tab-details-{{tab.id}}" class="tab-details" ng-repeat="tab in tabs" ng-mouseenter="showTabActions(tab.id)" ng-mouseleave="hideTabActions(tab.id)">
-                        <button type="button" class="btn btn-link tab-btn" ng-click="openTab(tab.url)">
-                            <img class="favicon" ng-show="tab.favicon" src="{{tab.favicon}}"/>
-                            {{tab.title}}
-                        </button>
-                        <span id="tab-action-{{tab.id}}" class="tab-actions-hidden">
-                            <button type="button" class="btn btn-xs btn-danger tab-btn" ng-click="deleteTab(tab.id, tab.url)">remove</button>
-                        </span>
-                        <p class="tab-url"><small>{{tab.url}}</small></p>
+                    <div id="group-details-{{group.id}}" class="group-details" ng-repeat="group in groups">
+                        <div id="group-info-{{group.id}}" class="group-info">
+                            <big><strong>{{group.name || group.date | date:'EEE, MMM d, y H:mm'}}</strong></big>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-link btn-small" ng-click="deleteGroup(group.id)">delete all</button>
+                                <button type="button" class="btn btn-link btn-small" ng-click="restoreGroup(group.id)">restore all</button>
+                            </div>
+                        </div>
+                        <div id="tab-details-{{tab.id}}" class="tab-details" ng-repeat="tab in tabs[group.id]" ng-mouseenter="showTabActions(tab.id)" ng-mouseleave="hideTabActions(tab.id)">
+                            <button type="button" class="btn btn-link tab-btn" ng-click="restoreTab(tab.id, tab.url)">
+                                <img class="favicon" ng-show="tab.favicon" src="{{tab.favicon}}"/>
+                                {{tab.title}}
+                            </button>
+                            <span id="tab-action-{{tab.id}}" class="tab-actions-hidden">
+                                <button type="button" class="btn btn-xs btn-danger tab-btn" ng-click="deleteTab(tab.id)">remove</button>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div ng-hide="tabs">

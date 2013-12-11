@@ -107,11 +107,16 @@ exports["test tab create/get"] = function(assert, done) {
     let results;
     // get by session id
     results = yield tabStorage.getTabsForSessions([session_id_1]);
-    assert.equal(results.length, session_data_1.length);
+    assert.equal(Object.keys(results).length, 1, "the number of session_id's matches with the query");
+    assert.equal(results[session_id_1].length, session_data_1.length, "the expected length is returned");
+
     results = yield tabStorage.getTabsForSessions([session_id_2]);
-    assert.equal(results.length, session_data_2.length);
+    assert.equal(Object.keys(results).length, 1, "the number of session_id's matches with the query");
+    assert.equal(results[session_id_2].length, session_data_2.length, "the expected length is returned");
+
     results = yield tabStorage.getTabsForSessions([session_id_1, session_id_2]);
-    assert.equal(results.length, session_data_1.length+session_data_2.length);
+    assert.equal(Object.keys(results).length, 2, "there are now two session_id's returned");
+    assert.equal(results[session_id_1].length+results[session_id_2].length, session_data_1.length+session_data_2.length, "the number of results is the addition of the two");
 
     yield tabStorage.deleteAll();
   }).then(done);
@@ -138,10 +143,11 @@ exports["test tab delete"] = function(assert, done) {
 
     let results;
     results = yield tabStorage.getTabsForSessions([session_id_1]);
-    assert.equal(results.length, session_data_1.length);
-    yield tabStorage.deleteTab(results[0].id);
+    assert.equal(results[session_id_1].length, session_data_1.length, "the correct number of results are returned");
+
+    yield tabStorage.deleteTabs([results[session_id_1][0].id]);
     results = yield tabStorage.getTabsForSessions([session_id_1]);
-    assert.equal(results.length, session_data_1.length-1);
+    assert.equal(results[session_id_1].length, session_data_1.length-1, "after deletion, the number is expected to decrease by one");
 
     yield tabStorage.deleteAll();
   }).then(done);
