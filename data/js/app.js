@@ -11,7 +11,7 @@ squirrelApp.controller("squirrelCtrl", function ($scope) {
 
   /** Messaging **/
 
-  $scope.restoreTab = function restoreTab(id) {
+  $scope.restoreTab = function restoreTab(id, url) {
     self.port.emit("restore_tab", {
       id: id,
       url: url,
@@ -24,31 +24,31 @@ squirrelApp.controller("squirrelCtrl", function ($scope) {
     });
   }
 
-  $scope.deleteGroup = function deleteGroup(groupID) {
-    var tabs = $scope.tabs[groupID];
-    var tabIDs = [];
+  $scope.deleteGroup = function deleteGroup(group_id) {
+    var tabs = $scope.tabs[group_id];
+    var tab_ids = [];
     for (var i=0; i < tabs.length; i++) {
-      tabIDs.push(tabs[i].id);
+      tab_ids.push(tabs[i].id);
     }
     self.port.emit("delete_group", {
-      id: groupID,
-      tabIDs: tabIDs,
+      id: group_id,
+      tab_ids: tab_ids,
       grouping: $scope.grouping,
     });
   }
 
-  $scope.restoreGroup = function restoreGroup(groupID) {
-    var tabs = $scope.tabs[groupID];
-    var tabIDs = [];
-    var tabURLs = [];
+  $scope.restoreGroup = function restoreGroup(group_id) {
+    var tabs = $scope.tabs[group_id];
+    var tab_ids = [];
+    var tab_urls = [];
     for (var i=0; i < tabs.length; i++) {
-      tabIDs.push(tabs[i].id);
-      tabURLs.push(tabs[i].url);
+      tab_ids.push(tabs[i].id);
+      tab_urls.push(tabs[i].url);
     }
     self.port.emit("restore_group", {
-      id: groupID,
-      tabIDs: tabIDs,
-      tabURLs: tabURLs,
+      id: group_id,
+      tab_ids: tab_ids,
+      tab_urls: tab_urls,
       grouping: $scope.grouping,
     });
   }
