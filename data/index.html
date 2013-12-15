@@ -20,10 +20,10 @@
                             </div>
                         </div>
                         <div id="tab-details-{{tab.id}}" class="tab-details" ng-repeat="tab in tabs[group.id]" ng-mouseenter="showTabActions(tab.id)" ng-mouseleave="hideTabActions(tab.id)">
-                            <button type="button" class="btn btn-link tab-btn" ng-click="restoreTab(tab.id, tab.url)">
+                            <a href="{{tab.url}}" target="_blank" class="tab-btn" ng-click="restoreTab(tab.id, tab.url)">
                                 <img class="favicon" ng-show="tab.favicon" src="{{tab.favicon}}"/>
                                 {{tab.title}}
-                            </button>
+                            </a>
                             <span id="tab-action-{{tab.id}}" class="tab-actions-hidden">
                                 <button type="button" class="btn btn-xs btn-danger tab-btn" ng-click="deleteTab(tab.id)">remove</button>
                             </span>
