@@ -9,7 +9,6 @@ exports["test connection"] = function(assert, done) {
     let schema_version = yield connection.getSchemaVersion();
 
     assert.equal(schema_version, DB_VERSION, "DB Schema is at the latest version");
-    assert.equal(connection.isMigrated, true, "Table created has succeeded");
 
     yield connection.execute(
       "INSERT INTO sessions (timestamp, name) VALUES (:timestamp, :name)", 
