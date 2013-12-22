@@ -1,5 +1,5 @@
 const Promise = require('sdk/core/promise');
-const {TabController} = require("TabController");
+const {TabController} = require("TabManagement");
 
 const {Cu} = require("chrome");
 Cu.import("resource://gre/modules/Task.jsm");
