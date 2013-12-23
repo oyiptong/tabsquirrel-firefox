@@ -5,6 +5,26 @@
   "description": "An addon to help manage tabs",
   "author": "Olivier Yiptong",
   "license": "APL 2.0",
-  "version": "0.3",
-  "dependencies": ["toolbarwidget", "browser-action", "addon-sdk"]
+  "version": "0.4",
+  "dependencies": ["toolbarwidget", "browser-action", "addon-sdk"],
+  "preferences": [
+    {
+      "name": "open_always_remove_after",
+      "title": "Always remove a tab after opening",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "name": "open_always_in_background",
+      "title": "Always open tabs in the background",
+      "type": "bool",
+      "value": false
+    },
+    {
+      "name": "collect_allow_duplicate_urls",
+      "title": "Allow duplicate URLs when collecting tabs",
+      "type": "bool",
+      "value": false
+    }
+  ]
 }
