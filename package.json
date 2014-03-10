@@ -5,7 +5,7 @@
   "description": "An addon to help manage tabs",
   "author": "Olivier Yiptong",
   "license": "APL 2.0",
-  "version": "0.4.9",
+  "version": "0.4.9.1",
   "dependencies": ["toolbarwidget", "browser-action", "addon-sdk"],
   "preferences": [
     {
